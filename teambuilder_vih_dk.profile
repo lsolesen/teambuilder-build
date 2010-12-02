@@ -1,5 +1,5 @@
 <?php
-// $Id: default.profile,v 1.22 2007/12/17 12:43:34 goba Exp $
+// $Id: teambuilder_vih_dk.profile,v 1.22 2007/12/17 12:43:34 goba Exp $
 
 /**
  * Return an array of the modules to be enabled when this profile is installed.
@@ -7,7 +7,7 @@
  * @return
  *   An array of modules to enable.
  */
-function default_profile_modules() {
+function teambuilder_vih_dk_profile_modules() {
   return array('color', 'comment', 'help', 'menu', 'taxonomy', 'dblog');
 }
 
@@ -19,7 +19,7 @@ function default_profile_modules() {
  *   and optional 'language' to override the language selection for
  *   language-specific profiles.
  */
-function default_profile_details() {
+function teambuilder_vih_dk_profile_details() {
   return array(
     'name' => 'teambuilder.vih.dk',
     'description' => 'Select this profile to use with teambuilder.vih.dk.'
@@ -35,7 +35,7 @@ function default_profile_details() {
  *   while the values will be displayed to the user in the installer
  *   task list.
  */
-function default_profile_task_list() {
+function teambuilder_vih_dk_profile_task_list() {
 }
 
 /**
@@ -89,9 +89,9 @@ function default_profile_task_list() {
  *   An optional HTML string to display to the user. Only used if you
  *   modify the $task, otherwise discarded.
  */
-function default_profile_tasks(&$task, $url) {
+function teambuilder_vih_dk_profile_tasks(&$task, $url) {
 
-  // Insert default user-defined node types into the database. For a complete
+  // Insert teambuilder_vih_dk user-defined node types into the database. For a complete
   // list of available node type attributes, refer to the node type API
   // documentation at: http://api.drupal.org/api/HEAD/function/hook_node_info.
   $types = array(
@@ -99,7 +99,7 @@ function default_profile_tasks(&$task, $url) {
       'type' => 'page',
       'name' => st('Page'),
       'module' => 'node',
-      'description' => st("A <em>page</em>, similar in form to a <em>story</em>, is a simple method for creating and displaying information that rarely changes, such as an \"About us\" section of a website. By default, a <em>page</em> entry does not allow visitor comments and is not featured on the site's initial home page."),
+      'description' => st("A <em>page</em>, similar in form to a <em>story</em>, is a simple method for creating and displaying information that rarely changes, such as an \"About us\" section of a website. By teambuilder_vih_dk, a <em>page</em> entry does not allow visitor comments and is not featured on the site's initial home page."),
       'custom' => TRUE,
       'modified' => TRUE,
       'locked' => FALSE,
@@ -110,7 +110,7 @@ function default_profile_tasks(&$task, $url) {
       'type' => 'story',
       'name' => st('Story'),
       'module' => 'node',
-      'description' => st("A <em>story</em>, similar in form to a <em>page</em>, is ideal for creating and displaying content that informs or engages website visitors. Press releases, site announcements, and informal blog-like entries may all be created with a <em>story</em> entry. By default, a <em>story</em> entry is automatically featured on the site's initial home page, and provides the ability to post comments."),
+      'description' => st("A <em>story</em>, similar in form to a <em>page</em>, is ideal for creating and displaying content that informs or engages website visitors. Press releases, site announcements, and informal blog-like entries may all be created with a <em>story</em> entry. By teambuilder_vih_dk, a <em>story</em> entry is automatically featured on the site's initial home page, and provides the ability to post comments."),
       'custom' => TRUE,
       'modified' => TRUE,
       'locked' => FALSE,
@@ -120,15 +120,15 @@ function default_profile_tasks(&$task, $url) {
   );
 
   foreach ($types as $type) {
-    $type = (object) _node_type_set_defaults($type);
+    $type = (object) _node_type_set_teambuilder_vih_dks($type);
     node_type_save($type);
   }
 
-  // Default page to not be promoted and have comments disabled.
+  // teambuilder_vih_dk page to not be promoted and have comments disabled.
   variable_set('node_options_page', array('status'));
   variable_set('comment_page', COMMENT_NODE_DISABLED);
 
-  // Don't display date and author information for page nodes by default.
+  // Don't display date and author information for page nodes by teambuilder_vih_dk.
   $theme_settings = variable_get('theme_settings', array());
   $theme_settings['toggle_node_info_page'] = FALSE;
   variable_set('theme_settings', $theme_settings);
@@ -143,9 +143,9 @@ function default_profile_tasks(&$task, $url) {
  * Allows the profile to alter the site-configuration form. This is
  * called through custom invocation, so $form_state is not populated.
  */
-function default_form_alter(&$form, $form_state, $form_id) {
+function teambuilder_vih_dk_form_alter(&$form, $form_state, $form_id) {
   if ($form_id == 'install_configure') {
-    // Set default for site name field.
+    // Set teambuilder_vih_dk for site name field.
     $form['site_information']['site_name']['#default_value'] = $_SERVER['SERVER_NAME'];
   }
 }
