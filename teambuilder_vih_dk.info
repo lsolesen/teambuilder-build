@@ -1,0 +1,31 @@
+name = teambuilder.vih.dk
+description = Install profile for teambuilder.vih.dk
+version = 0.1.0
+core = 6.x
+dependencies[] = block
+dependencies[] = color
+dependencies[] = comment
+dependencies[] = contextual
+dependencies[] = dashboard
+dependencies[] = help
+dependencies[] = image
+dependencies[] = menu
+dependencies[] = path
+dependencies[] = taxonomy
+dependencies[] = dblog
+dependencies[] = search
+dependencies[] = shortcut
+dependencies[] = toolbar
+dependencies[] = overlay
+dependencies[] = field_ui
+dependencies[] = file
+dependencies[] = rdf
+
+;contrib
+dependencies[] = features
+dependencies[] = wysiwyg
+dependencies[] = views
+dependencies[] = views_ui
+dependencies[] = googleanalytics
+dependencies[] = pathauto
+dependencies[] = xmlsitemap
