@@ -38,7 +38,7 @@ projects[features][version] = "1.0"
 projects[fbconnect][subdir] = "contrib"
 
 projects[filefield][subdir] = "contrib"
-projects[filefield][version] = "3.7"
+projects[filefield][version] = "3.9"
 
 projects[globalredirect][subdir] = "contrib"
 projects[globalredirect][version] = "1.2"
@@ -49,7 +49,7 @@ projects[google_analytics][version] = "3.0"
 projects[i18n][subdir] = "contrib"
 
 projects[image_resize_filter][subdir] = "contrib"
-projects[image_resize_filter][version] = "1.9"
+projects[image_resize_filter][version] = "1.10"
 
 projects[imageapi][subdir] = "contrib"
 projects[imageapi][version] = "1.9"
@@ -61,7 +61,7 @@ projects[imagecache_actions][subdir] = "contrib"
 projects[imagecache_actions][version] = "1.7"
 
 projects[imagefield][subdir] = "contrib"
-projects[imagefield][version] = "3.7"
+projects[imagefield][version] = "3.9"
 
 projects[jquery_ui][subdir] = "contrib"
 projects[jquery_ui][version] = "1.4"
@@ -89,7 +89,7 @@ projects[nodewords][subdir] = "contrib"
 projects[nodewords_nodetype][subdir] = "contrib"
 
 projects[path_redirect][subdir] = "contrib"
-projects[path_redirect][version] = "1.0-rc1"
+projects[path_redirect][version] = "1.0-rc2"
 
 projects[pathauto][subdir] = "contrib"
 projects[pathauto][version] = "2.0-alpha3"
@@ -131,7 +131,7 @@ projects[vertical_tabs][subdir] = "contrib"
 projects[vertical_tabs][version] = "1.0-rc1"
 
 projects[views][subdir] = "contrib"
-projects[views][version] = "2.11"
+projects[views][version] = "2.12"
 
 projects[views_bulk_operations][subdir] = "contrib"
 projects[views_bulk_operations][version] = "1.10"
