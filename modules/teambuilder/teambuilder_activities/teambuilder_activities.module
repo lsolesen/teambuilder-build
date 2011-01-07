@@ -1,0 +1,3 @@
+<?php
+
+include_once('teambuilder_activities.features.inc');
