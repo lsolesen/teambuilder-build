@@ -120,7 +120,7 @@ function teambuilder_vih_dk_profile_tasks(&$task, $url) {
   );
 
   foreach ($types as $type) {
-    $type = (object) _node_type_set_teambuilder_vih_dks($type);
+    $type = (object) _node_type_set_defaults($type);
     node_type_save($type);
   }
 
