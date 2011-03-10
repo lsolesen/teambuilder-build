@@ -11,7 +11,6 @@ projects[admin_theme][version] = "1.3"
 projects[autoload][subdir] = "contrib"
 
 projects[cck][subdir] = "contrib"
-projects[cck][version] = "2.8"
 
 projects[comment_notify][subdir] = "contrib"
 projects[comment_notify][version] = "1.5"
@@ -25,7 +24,6 @@ projects[ctools][subdir] = "contrib"
 projects[ctools][version] = "1.8"
 
 projects[date][subdir] = "contrib"
-projects[date][version] = "2.6"
 
 projects[email][subdir] = "contrib"
 projects[email][version] = "1.2"
@@ -44,12 +42,10 @@ projects[globalredirect][subdir] = "contrib"
 projects[globalredirect][version] = "1.2"
 
 projects[google_analytics][subdir] = "contrib"
-projects[google_analytics][version] = "3.0"
 
 projects[i18n][subdir] = "contrib"
 
 projects[image_resize_filter][subdir] = "contrib"
-projects[image_resize_filter][version] = "1.10"
 
 projects[imageapi][subdir] = "contrib"
 projects[imageapi][version] = "1.9"
@@ -82,7 +78,6 @@ projects[menu_breadcrumb][subdir] = "contrib"
 projects[menu_breadcrumb][version] = "1.3"
 
 projects[menu_block][subdir] = "contrib"
-projects[menu_block][version] = "2.3"
 
 projects[nodewords][subdir] = "contrib"
 
