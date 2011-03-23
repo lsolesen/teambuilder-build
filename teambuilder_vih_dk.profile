@@ -8,7 +8,12 @@
  *   An array of modules to enable.
  */
 function teambuilder_vih_dk_profile_modules() {
-  return array('color', 'comment', 'help', 'menu', 'taxonomy', 'dblog');
+  return array(
+    // core
+    'comment', 'menu', 'taxonomy', 'dblog',
+    // contrib
+    'admin_menu', 'addthis', 'comment_notify', 'vertical_tabs'
+  );
 }
 
 /**

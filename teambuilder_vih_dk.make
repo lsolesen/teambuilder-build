@@ -91,6 +91,8 @@ projects[transliteration][subdir] = "contrib"
 
 projects[twitter][subdir] = "contrib"
 
+projects[vertical_tabs][subdir] = "contrib"
+
 projects[views][subdir] = "contrib"
 
 projects[wysiwyg][subdir] = "contrib"
