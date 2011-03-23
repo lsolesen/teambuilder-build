@@ -1,0 +1,4 @@
+name = Exercise PDF
+description = Prints a pdf of an exercise
+package = Motionsplan
+core = 6.x
