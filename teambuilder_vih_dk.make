@@ -5,8 +5,6 @@ projects[addthis][subdir] = "contrib"
 
 projects[admin_menu][subdir] = "contrib"
 
-projects[admin_theme][subdir] = "contrib"
-
 projects[autoload][subdir] = "contrib"
 
 projects[cck][subdir] = "contrib"
@@ -35,8 +33,6 @@ projects[globalredirect][subdir] = "contrib"
 
 projects[google_analytics][subdir] = "contrib"
 
-projects[i18n][subdir] = "contrib"
-
 projects[image_resize_filter][subdir] = "contrib"
 
 projects[imageapi][subdir] = "contrib"
@@ -50,12 +46,6 @@ projects[imagefield][subdir] = "contrib"
 projects[jquery_ui][subdir] = "contrib"
 
 projects[link][subdir] = "contrib"
-
-projects[location][subdir] = "contrib"
-
-projects[markdown][subdir] = "contrib"
-
-projects[menu_breadcrumb][subdir] = "contrib"
 
 projects[menu_block][subdir] = "contrib"
 
@@ -71,19 +61,13 @@ projects[quiz][subdir] = "contrib"
 
 projects[rules][subdir] = "contrib"
 
-projects[scheduler][subdir] = "contrib"
-
 projects[similarterms][subdir] = "contrib"
 
 projects[spamspan][subdir] = "contrib"
 
 projects[strongarm][subdir] = "contrib"
 
-projects[suggestedterms][subdir] = "contrib"
-
 projects[tagadelic][subdir] = "contrib"
-
-projects[term_node_count][subdir] = "contrib"
 
 projects[token][subdir] = "contrib"
 
