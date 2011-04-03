@@ -15,6 +15,8 @@ projects[content_access][subdir] = "contrib"
 
 projects[content_profile][subdir] = "contrib"
 
+projects[contextual][subdir] = "contrib"
+
 projects[ctools][subdir] = "contrib"
 
 projects[date][subdir] = "contrib"
@@ -28,6 +30,8 @@ projects[features][subdir] = "contrib"
 projects[fbconnect][subdir] = "contrib"
 
 projects[filefield][subdir] = "contrib"
+
+projects[flag][subdir] = "contrib"
 
 projects[globalredirect][subdir] = "contrib"
 
