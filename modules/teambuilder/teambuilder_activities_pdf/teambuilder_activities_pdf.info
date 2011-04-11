@@ -1,4 +1,4 @@
-name = Exercise PDF
+name = Teambuilder Activity PDF
 description = Prints a pdf of an exercise
-package = Motionsplan
+package = VIH Teambuilder
 core = 6.x
