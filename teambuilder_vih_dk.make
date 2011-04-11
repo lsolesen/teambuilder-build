@@ -49,6 +49,8 @@ projects[imagefield][subdir] = "contrib"
 
 projects[jquery_ui][subdir] = "contrib"
 
+projects[libraries][subdir] = "contrib"
+
 projects[link][subdir] = "contrib"
 
 projects[menu_block][subdir] = "contrib"
@@ -90,3 +92,9 @@ libraries[ckeditor][download][type] = "get"
 libraries[ckeditor][download][url] = "http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.4.1/ckeditor_3.4.1.zip"
 libraries[ckeditor][directory_name] = "ckeditor"
 libraries[ckeditor][destination] = "libraries"
+
+libraries[fpdf][download][type] = "get"
+libraries[fpdf][download][url] = "http://pearhub.com/get/FPDF-1.6.0.tgz"
+libraries[fpdf][directory_name] = "fpdf"
+libraries[fpdf][destination] = "libraries"
+
