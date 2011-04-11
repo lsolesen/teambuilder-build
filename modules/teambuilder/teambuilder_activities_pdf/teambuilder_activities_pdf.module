@@ -38,7 +38,7 @@ function exercise_pdf_access($node) {
  */
 function exercise_pdf_portrait($node) {
     global $base_url;
-    require_once libraries_get_path('fpdf') . '/fpdf.php';
+    require_once libraries_get_path('fpdf') . '/FPDF-1.6.0/fpdf.php';
 
     $title = "  " . utf8_decode($node->title);
     $description = utf8_decode(strip_tags($node->field_instruction[0]['value']));
@@ -209,7 +209,7 @@ function teambuilder_activities_pdf_get_vocabulary_machinename_by_vid($vid) {
  */
 function exercise_pdf_teacher($node) {
     global $base_url;
-    require_once libraries_get_path('fpdf') . '/fpdf.php';
+    require_once libraries_get_path('fpdf') . '/FPDF-1.6.0/fpdf.php';
 
     $title = "  " . utf8_decode($node->title);
     $description = utf8_decode(strip_tags($node->body));
