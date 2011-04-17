@@ -100,3 +100,6 @@ libraries[fpdf][download][url] = "http://pearhub.com/get/FPDF-1.6.0.tgz"
 libraries[fpdf][directory_name] = "fpdf"
 libraries[fpdf][destination] = "libraries"
 
+libraries[facebook-php-sdk][download][type] = "get"
+libraries[facebook-php-sdk][download][url] = "http://github.com/facebook/php-sdk/tarball/v2.1.1"
+libraries[facebook-php-sdk][destination] = "modules/fbconnect"  
