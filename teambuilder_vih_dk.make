@@ -53,6 +53,8 @@ projects[libraries][subdir] = "contrib"
 
 projects[link][subdir] = "contrib"
 
+projects[media_youtube][subdir] = "contrib"
+
 projects[menu_block][subdir] = "contrib"
 
 projects[nodewords][subdir] = "contrib"
