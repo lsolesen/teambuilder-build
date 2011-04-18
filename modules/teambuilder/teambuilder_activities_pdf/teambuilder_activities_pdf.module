@@ -220,7 +220,7 @@ function exercise_pdf_teacher($node) {
     
     $where = utf8_decode(strip_tags($node->field_location[0]['value']));
     $what = utf8_decode(implode($keywords, ", "));
-    $who = 'Alle';
+    $who = utf8_decode(strip_tags($node->field_who[0]['value']));
     $how_many = utf8_decode(strip_tags($node->field_groupsize[0]['value']));
     $materials = utf8_decode(strip_tags($node->field_materials[0]['value']));
     $duration = utf8_decode(strip_tags($node->field_time[0]['value']));
