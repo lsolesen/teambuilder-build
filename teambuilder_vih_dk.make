@@ -47,6 +47,12 @@ projects[imagecache_actions][subdir] = "contrib"
 
 projects[imagefield][subdir] = "contrib"
 
+projects[imce][subdir] = "contrib"
+
+projects[imce][subdir] = "contrib"
+
+projects[imce_wysiwyg][subdir] = "contrib"
+
 projects[jquery_ui][subdir] = "contrib"
 
 projects[libraries][subdir] = "contrib"
