@@ -12,7 +12,7 @@ function teambuilder_vih_dk_profile_modules() {
     // core
     'comment', 'menu', 'taxonomy', 'dblog',
     // contrib
-    'addthis', 'admin_menu', 'addthis', 'comment_notify', 'content_access', 'contextual', 'imce', 'imce_wysiwyg', 'libraries', 'pathauto', 'vertical_tabs', 'wysiwyg'
+    'addthis', 'admin_menu', 'addthis', 'comment_notify', 'content_access', 'contextual', 'imagecache', 'imagecache_ui', 'imce', 'imce_wysiwyg', 'libraries', 'pathauto', 'vertical_tabs', 'wysiwyg'
   );
 }
 

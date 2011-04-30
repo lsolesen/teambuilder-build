@@ -108,6 +108,11 @@ libraries[fpdf][download][url] = "http://pearhub.com/get/FPDF-1.6.0.tgz"
 libraries[fpdf][directory_name] = "fpdf"
 libraries[fpdf][destination] = "libraries"
 
+libraries[tcpdf][download][type] = "get"
+libraries[tcpdf][download][url] = "http://pearhub.com/get/TCPDF-5.9.074.tgz"
+libraries[tcpdf][directory_name] = "fpdf"
+libraries[tcpdf][destination] = "libraries"
+
 libraries[facebook-php-sdk][download][type] = "get"
 libraries[facebook-php-sdk][download][url] = "http://github.com/facebook/php-sdk/tarball/v2.1.1"
 libraries[facebook-php-sdk][destination] = "modules/fbconnect"  

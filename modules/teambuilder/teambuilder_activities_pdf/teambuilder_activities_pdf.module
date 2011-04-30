@@ -38,7 +38,7 @@ function exercise_pdf_access($node) {
  */
 function exercise_pdf_portrait($node) {
     global $base_url;
-    require_once libraries_get_path('fpdf') . '/FPDF-1.6.0/fpdf.php';
+    require_once libraries_get_path('fpdf') . '/FPDF-1.6.0/fpdf.php';    
 
     $title = "  " . utf8_decode($node->title);
     $description = utf8_decode(strip_tags($node->field_instruction[0]['value']));
@@ -78,7 +78,10 @@ function exercise_pdf_portrait($node) {
     $pdf->SetFont('Helvetica', null, 10);
     $pdf->MultiCell(0, 5, utf8_decode(implode($keywords, ", ")), 0, 'L');
 
-    if (!empty($node->field_image)) {
+    if (!empty($node->field_image[0])) {
+        $presetname = 'activity';
+        $preset = imagecache_preset_by_name($presetname);
+    
         $x = 10;
         $y = 60;
         $width = 0;
@@ -86,34 +89,37 @@ function exercise_pdf_portrait($node) {
         $count = 0;
         $picture_rows = 1;
         foreach ($node->field_image as $image) {
-            $file = realpath(dirname(__FILE__) . '/../../../../../' . $image['filepath']);
-            $size = getimagesize($file);
-            if ($size[0] < $size[1]) {
-                $orientation = 'portrait';
-                $pic_width = 55;
-                $new_line = 80;
-                if ($count > 6) {
-                    break;
+            $src = $image["filepath"];
+            $file = imagecache_create_path($presetname, $src);
+            if (file_exists($file) || imagecache_build_derivative($preset['actions'], $src, $file)) {
+                $size = getimagesize($file);
+                if ($size[0] < $size[1]) {
+                    $orientation = 'portrait';
+                    $pic_width = 55;
+                    $new_line = 80;
+                    if ($count > 6) {
+                        break;
+                    }
+                } else {
+                    $orientation = 'landscape';
+                    $pic_width = 80;
+                    $new_line = 50;
+                    if ($count > 4) {
+                        break;
+                    }
                 }
-            } else {
-                $orientation = 'landscape';
-                $pic_width = 80;
-                $new_line = 50;
-                if ($count > 4) {
-                    break;
+                $width += $pic_width + $spacing;
+
+                if ($width > 200) {
+                    $y += $new_line;
+                    $x = 10;
+                    $picture_rows++;
+                    $width = 0;
                 }
-            }
-            $width += $pic_width + $spacing;
 
-            if ($width > 200) {
-                $y += $new_line;
-                $x = 10;
-                $picture_rows++;
-                $width = 0;
-            }
-
-            $pdf->Image($file,$x,$y,$pic_width,0,'');
-            $x += $pic_width + $spacing;
+                $pdf->Image($file,$x,$y,$pic_width,0,'');
+                $x += $pic_width + $spacing;
+            }       
         }
     }
 
@@ -209,28 +215,31 @@ function teambuilder_activities_pdf_get_vocabulary_machinename_by_vid($vid) {
  */
 function exercise_pdf_teacher($node) {
     global $base_url;
-    require_once libraries_get_path('fpdf') . '/FPDF-1.6.0/fpdf.php';
+    require_once libraries_get_path('tcpdf') . '/TCPDF-5.9.074/tcpdf/tcpdf.php';
 
-    $title = "  " . utf8_decode($node->title);
-    $description = utf8_decode(strip_tags($node->body));
+    $title = "  " . $node->title;
+    $intro = '<b>' . strip_tags($node->field_instruction[0]['value']) . '</b>';
+    $description = $node->body;
+    $debriefing = '<i>' . strip_tags($node->field_debriefing[0]['value']) . '</i>';        
     $keywords = array();
     foreach ($node->taxonomy as $taxonomy) {
         $keywords[] = $taxonomy->name;
     }
-    
-    $where = utf8_decode(strip_tags($node->field_location[0]['value']));
-    $what = utf8_decode(implode($keywords, ", "));
-    $who = utf8_decode(strip_tags($node->field_who[0]['value']));
-    $how_many = utf8_decode(strip_tags($node->field_groupsize[0]['value']));
-    $materials = utf8_decode(strip_tags($node->field_materials[0]['value']));
-    $duration = utf8_decode(strip_tags($node->field_time[0]['value']));
+ 
+    $where = strip_tags($node->field_space[0]['value']);
+    $what = implode($keywords, ", ");
+    $who = strip_tags($node->field_who[0]['value']);
+    $how_many = strip_tags($node->field_groupsize[0]['value']);
+    $materials = strip_tags($node->field_materials[0]['value']);
+    $duration = strip_tags($node->field_time[0]['value']);
 
     $url = $base_url. '/node/' . $node->nid;
 
-    $pdf = new FPDF('L','mm','A5');
+    $pdf = new TCPDF('L','mm','A5');
+
     $pdf->SetTitle($title);
     $pdf->SetSubject($title);
-    $pdf->SetAuthor('teambuilder.vih.dk');
+    $pdf->SetAuthor('');
     $pdf->SetAutoPageBreak(false);
     $pdf->SetMargins(5, 5, 5);    
 
@@ -251,10 +260,6 @@ function exercise_pdf_teacher($node) {
     $pdf->SetFont('Helvetica', 'B', $title_size);
     $pdf->Cell($cell_width, 12, $title, null, 2, 'L', true);
 
-    $pdf->SetY(15);
-    $pdf->SetFont('Helvetica', null, 8);
-    //$pdf->MultiCell($cell_width, 5, utf8_decode(implode($keywords, ", ")), 0, 'L', false);
-
     $pdf->setY(20);
     $pdf->SetTextColor(0, 0, 0);
     
@@ -270,75 +275,66 @@ Varighed? ' . $duration . '';
     
     $pdf->MultiCell($cell_width, 4, $information, 1, 'L', false);
     
-    /*
-    if (!empty($node->field_image)) {
-        $x = 10;
-        $y = 60;
+    if (!empty($node->field_image[0])) {
+        $x = 110;
+        $y = 10;
         $width = 0;
         $spacing = 5;
         $count = 0;
         $picture_rows = 1;
+        $presetname = 'activity';
+        $preset = imagecache_preset_by_name($presetname);
+        
         foreach ($node->field_image as $image) {
-            $file = realpath(dirname(__FILE__) . '/../../../../../' . $image['filepath']);
-            $size = getimagesize($file);
-            if ($size[0] < $size[1]) {
-                $orientation = 'portrait';
-                $pic_width = 55;
-                $new_line = 80;
-                if ($count > 6) {
-                    break;
+            $src = $image["filepath"];
+            $file = imagecache_create_path($presetname, $src);
+            if (file_exists($file) || imagecache_build_derivative($preset['actions'], $src, $file)) {
+                $size = getimagesize($file);
+                if ($size[0] < $size[1]) {
+                    $orientation = 'portrait';
+                    $pic_width = 40;
+                    $new_line = 70;
+                    if ($count > 6) {
+                        break;
+                    }
+                } else {
+                    $orientation = 'landscape';
+                    $pic_width = 80;
+                    $new_line = 50;
+                    if ($count > 4) {
+                        break;
+                    }
                 }
-            } else {
-                $orientation = 'landscape';
-                $pic_width = 80;
-                $new_line = 50;
-                if ($count > 4) {
-                    break;
+                $width += $pic_width + $spacing;
+
+                if ($width > 100) {
+                    $y += $new_line;
+                    $x = 110;
+                    $picture_rows++;
+                    $width = 0;
                 }
-            }
-            $width += $pic_width + $spacing;
 
-            if ($width > 200) {
-                $y += $new_line;
-                $x = 10;
-                $picture_rows++;
-                $width = 0;
+                $pdf->Image($file,$x,$y,$pic_width,0,'');
+                $x += $pic_width + $spacing;
             }
-
-            $pdf->Image($file,$x,$y,$pic_width,0,'');
-            $x += $pic_width + $spacing;
         }
     }
 
     $pdf->SetFont('Helvetica', null, 17);
     $pdf->setTextColor(0, 0, 0);
 
-    if ($orientation == 'portrait') {
-        if ($picture_rows == 1) {
-            $pdf->setY(150);
-        } else {
-            $pdf->setY(230);
-        }
-    } else {
-        if ($picture_rows == 1) {
-            $pdf->setY(130);
-        } else {
-            $pdf->setY(200);
-        }
-    }
-    */
     $pdf->SetFont('Helvetica', null, 8);
     
-    $pdf->MultiCell($cell_width, 4, "\n" . $description, 0);
+    $pdf->Ln(2);
+    $pdf->MultiCell($cell_width, 4, $intro, 0, 'L', false, 1, '', '', true, 0, true);
+    $pdf->Ln(2);    
+    $pdf->MultiCell($cell_width, 4, $description, 0, 'L', false, 1, '', '', true, 0, true);
+    $pdf->Ln(2);    
+    $pdf->MultiCell($cell_width, 4, $debriefing, 0, 'L', false, 1, '', '', true, 0, true);
 
     $pdf->Image(dirname(__FILE__) . '/vejle_logo.png',110,130,30,0,'', 'http://vejle.dk/');
     $pdf->Image(dirname(__FILE__) . '/vejle_logo.png',70,135,20,0,'', 'http://vejle.dk/');
     $pdf->Image(dirname(__FILE__) . '/cc-by-sa_340x340.png',84,6,10,0,'');
-
-    $pdf->SetFont('Helvetica', null, 8);
-    $pdf->setY(280);
-    $pdf->setX(7);
-    $pdf->MultiCell(50, 8, $url, 0, 'C');
 
     $image_url = "http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=" . $url;
   
@@ -361,6 +357,6 @@ Varighed? ' . $duration . '';
 
     $pdf->Image(dirname(__FILE__) . '/barcodes/' . md5(request_uri()) . '.png', 170, 110, 40, 0, '');
 
-    $pdf->Output();
+    $pdf->Output($title . '.pdf', 'I');
 }
 
