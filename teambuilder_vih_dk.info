@@ -25,6 +25,7 @@ dependencies[] = rdf
 dependencies[] = features
 dependencies[] = googleanalytics
 dependencies[] = libraries
+dependencies[] = media_youtube
 dependencies[] = pathauto
 dependencies[] = views
 dependencies[] = views_ui

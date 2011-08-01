@@ -47,19 +47,11 @@ projects[imagecache_actions][subdir] = "contrib"
 
 projects[imagefield][subdir] = "contrib"
 
-projects[imce][subdir] = "contrib"
-
-projects[imce][subdir] = "contrib"
-
-projects[imce_wysiwyg][subdir] = "contrib"
-
 projects[jquery_ui][subdir] = "contrib"
 
 projects[libraries][subdir] = "contrib"
 
 projects[link][subdir] = "contrib"
-
-projects[l10n_update][subdir] = "contrib"
 
 projects[media_youtube][subdir] = "contrib"
 
@@ -108,11 +100,3 @@ libraries[fpdf][download][url] = "http://pearhub.com/get/FPDF-1.6.0.tgz"
 libraries[fpdf][directory_name] = "fpdf"
 libraries[fpdf][destination] = "libraries"
 
-libraries[tcpdf][download][type] = "get"
-libraries[tcpdf][download][url] = "http://pearhub.com/get/TCPDF-5.9.074.tgz"
-libraries[tcpdf][directory_name] = "fpdf"
-libraries[tcpdf][destination] = "libraries"
-
-libraries[facebook-php-sdk][download][type] = "get"
-libraries[facebook-php-sdk][download][url] = "http://github.com/facebook/php-sdk/tarball/v2.1.1"
-libraries[facebook-php-sdk][destination] = "modules/fbconnect"  
