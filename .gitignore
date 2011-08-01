@@ -1,0 +1,5 @@
+.settings/*
+.buildpath
+.project
+modules/contrib/*
+modules/libraries/*

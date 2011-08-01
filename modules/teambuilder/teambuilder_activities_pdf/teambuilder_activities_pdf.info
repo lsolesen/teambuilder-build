@@ -1,0 +1,6 @@
+name = Teambuilder Activity PDF
+description = Prints a pdf of an exercise
+package = VIH Teambuilder
+core = 6.x
+
+dependencies[] = libraries
