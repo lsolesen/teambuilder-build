@@ -27,7 +27,8 @@ function teambuilder_vih_dk_profile_modules() {
 function teambuilder_vih_dk_profile_details() {
   return array(
     'name' => 'teambuilder.vih.dk',
-    'description' => 'Select this profile to use with teambuilder.vih.dk.'
+    'description' => 'Select this profile to use with teambuilder.vih.dk.',
+    'old_short_name' => 'default'
   );
 }
 
