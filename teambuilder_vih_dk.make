@@ -26,7 +26,7 @@ projects[ctools][subdir] = "contrib"
 projects[ctools][version] = 1.8
 
 projects[date][subdir] = "contrib"
-projects[date][version] = 2.8
+projects[date][version] = 2.9
 
 projects[emfield][subdir] = "contrib"
 projects[emfield][version] = 2.5
@@ -41,7 +41,7 @@ projects[flag][subdir] = "contrib"
 projects[flag][version] = 1.3
 
 projects[globalredirect][subdir] = "contrib"
-projects[globalredirect][version] = 1.4
+projects[globalredirect][version] = 1.5
 
 projects[google_analytics][subdir] = "contrib"
 projects[google_analytics][version] = 3.3
@@ -53,7 +53,7 @@ projects[imageapi][subdir] = "contrib"
 projects[imageapi][version] = 1.10
 
 projects[imagecache][subdir] = "contrib"
-projects[imagecache][version] = 2.0-beta12
+projects[imagecache][version] = 2.0-rc1
 
 projects[imagefield][subdir] = "contrib"
 projects[imagefield][version] = 3.10
@@ -89,7 +89,7 @@ projects[similarterms][subdir] = "contrib"
 projects[similarterms][version] = 2.2
 
 projects[strongarm][subdir] = "contrib"
-projects[strongarm][version] = 2.1
+projects[strongarm][version] = 2.2
 
 projects[tagadelic][subdir] = "contrib"
 projects[tagadelic][version] = 1.3
@@ -98,7 +98,7 @@ projects[token][subdir] = "contrib"
 projects[token][version] = 1.18
 
 projects[transliteration][subdir] = "contrib"
-projects[transliteration][version] = 3.0
+projects[transliteration][version] = 3.1
 
 projects[twitter][subdir] = "contrib"
 projects[twitter][version] = 3.0-beta9
