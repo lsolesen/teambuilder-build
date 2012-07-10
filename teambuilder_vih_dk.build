@@ -4,7 +4,7 @@ api = 2
 core = 6.x
 
 projects[drupal][type] = core
-projects[drupal][version] = 6.25
+projects[drupal][version] = 6.26
 
 projects[teambuilder_vih_dk][type] = "profile"
 projects[teambuilder_vih_dk][download][type] = "git"
