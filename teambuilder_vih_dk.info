@@ -27,6 +27,7 @@ dependencies[] = googleanalytics
 dependencies[] = libraries
 dependencies[] = media_youtube
 dependencies[] = pathauto
+dependencies[] = token
 dependencies[] = views
 dependencies[] = views_ui
 dependencies[] = wysiwyg
