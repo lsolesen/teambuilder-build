@@ -1,4 +1,4 @@
-[teambuilder.vih.dk](http://teambuilder.vih.dk)
+[teambuilder.vih.dk](http://teambuilder.vih.dk) [![Build Status](https://secure.travis-ci.org/lsolesen/teambuilder.vih.dk.png?branch=master)](http://travis-ci.org/lsolesen/teambuilder.vih.dk)
 ==
 
 Installation profile for teambuilder.vih.dk written for Drupal 6.
