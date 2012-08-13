@@ -13,8 +13,8 @@ before_script:
   - pear channel-discover pear.drush.org
   - pear install drush/drush
   - phpenv rehash
-  - drush make teambuilder_vih_dk.build ../teambuilder.vih.dk
-  - cd ../teambuilder.vih.dk
+  - drush make teambuilder_vih_dk.build ../teambuilder_dev.vih.dk
+  - cd ../teambuilder_dev.vih.dk
   - sudo chmod -R 777 sites/all/modules
   - drush si teambuilder_vih_dk --db-url=mysql://root:@127.0.0.1/drupal --account-name=admin --account-pass=VIH@2012 --site-mail=admin@example.com --site-name="teambuilder.vih.dk" --yes
   - drush cc all --yes
@@ -22,5 +22,5 @@ before_script:
 script: 
   - test -d profiles/teambuilder_vih_dk
   - test -d profiles/teambuilder_vih_dk/modules/contrib
-  - test -d profiles/teambuilder_vih_dk/modules/vih
+  - test -d profiles/teambuilder_vih_dk/modules/teambuilder
   - test -d profiles/teambuilder_vih_dk/themes
