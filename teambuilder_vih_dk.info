@@ -23,9 +23,12 @@ dependencies[] = rdf
 
 ;contrib
 dependencies[] = features
-dependencies[] = wysiwyg
+dependencies[] = googleanalytics
+dependencies[] = libraries
+dependencies[] = media_youtube
+dependencies[] = pathauto
+dependencies[] = token
 dependencies[] = views
 dependencies[] = views_ui
-dependencies[] = googleanalytics
-dependencies[] = pathauto
+dependencies[] = wysiwyg
 dependencies[] = xmlsitemap

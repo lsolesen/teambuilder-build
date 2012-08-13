@@ -1,13 +1,19 @@
 <?php
-require_once 'fpdf.php';
-
 /**
  * Implementation of hook_menu()
  */ 
 function teambuilder_activities_pdf_menu() {
     $items['node/%node/pdf'] = array(
-        'title' => 'PDF',
+        'title' => 'A4 PDF',
         'page callback' => 'exercise_pdf_portrait',
+        'page arguments' => array(1),
+        'type' => MENU_LOCAL_TASK,
+        'access callback' => 'exercise_pdf_access',
+        'access arguments' => array(1)
+    );
+    $items['node/%node/pdf2'] = array(
+        'title' => 'A6 PDF',
+        'page callback' => 'exercise_pdf_teacher',
         'page arguments' => array(1),
         'type' => MENU_LOCAL_TASK,
         'access callback' => 'exercise_pdf_access',
@@ -32,7 +38,7 @@ function exercise_pdf_access($node) {
  */
 function exercise_pdf_portrait($node) {
     global $base_url;
-    require_once 'fpdf.php';
+    require_once libraries_get_path('fpdf') . '/FPDF-1.6.0/fpdf.php';    
 
     $title = "  " . utf8_decode($node->title);
     $description = utf8_decode(strip_tags($node->field_instruction[0]['value']));
@@ -46,7 +52,7 @@ function exercise_pdf_portrait($node) {
     $pdf = new FPDF('P','mm','A4');
     $pdf->SetTitle($title);
     $pdf->SetSubject($title);
-    $pdf->SetAuthor('Motionsplan.dk');
+    $pdf->SetAuthor('teambuilder.vih.dk');
     $pdf->SetAutoPageBreak(false);
     $pdf->SetMargins(0, 0, 0);    
 
@@ -61,8 +67,6 @@ function exercise_pdf_portrait($node) {
     if ($title_width > 200) {
         $title_size = 25;
     }
-    
-    $pdf->SetFont('Helvetica', 'B', $title_size);
 
     $pdf->SetFont('Helvetica', 'B', $title_size);
     $pdf->SetTextColor(255, 255, 255);
@@ -74,7 +78,10 @@ function exercise_pdf_portrait($node) {
     $pdf->SetFont('Helvetica', null, 10);
     $pdf->MultiCell(0, 5, utf8_decode(implode($keywords, ", ")), 0, 'L');
 
-    if (!empty($node->field_image)) {
+    if (!empty($node->field_image[0])) {
+        $presetname = 'activity';
+        $preset = imagecache_preset_by_name($presetname);
+    
         $x = 10;
         $y = 60;
         $width = 0;
@@ -82,34 +89,37 @@ function exercise_pdf_portrait($node) {
         $count = 0;
         $picture_rows = 1;
         foreach ($node->field_image as $image) {
-            $file = realpath(dirname(__FILE__) . '/../../../../../' . $image['filepath']);
-            $size = getimagesize($file);
-            if ($size[0] < $size[1]) {
-                $orientation = 'portrait';
-                $pic_width = 55;
-                $new_line = 80;
-                if ($count > 6) {
-                    break;
+            $src = $image["filepath"];
+            $file = imagecache_create_path($presetname, $src);
+            if (file_exists($file) || imagecache_build_derivative($preset['actions'], $src, $file)) {
+                $size = getimagesize($file);
+                if ($size[0] < $size[1]) {
+                    $orientation = 'portrait';
+                    $pic_width = 55;
+                    $new_line = 80;
+                    if ($count > 6) {
+                        break;
+                    }
+                } else {
+                    $orientation = 'landscape';
+                    $pic_width = 80;
+                    $new_line = 50;
+                    if ($count > 4) {
+                        break;
+                    }
                 }
-            } else {
-                $orientation = 'landscape';
-                $pic_width = 80;
-                $new_line = 50;
-                if ($count > 4) {
-                    break;
+                $width += $pic_width + $spacing;
+
+                if ($width > 200) {
+                    $y += $new_line;
+                    $x = 10;
+                    $picture_rows++;
+                    $width = 0;
                 }
-            }
-            $width += $pic_width + $spacing;
 
-            if ($width > 200) {
-                $y += $new_line;
-                $x = 10;
-                $picture_rows++;
-                $width = 0;
-            }
-
-            $pdf->Image($file,$x,$y,$pic_width,0,'');
-            $x += $pic_width + $spacing;
+                $pdf->Image($file,$x,$y,$pic_width,0,'');
+                $x += $pic_width + $spacing;
+            }       
         }
     }
 
@@ -162,5 +172,191 @@ function exercise_pdf_portrait($node) {
     $pdf->Image(dirname(__FILE__) . '/barcodes/' . md5(request_uri()) . '.png', 160, 245, 45, 0, '');
 
     $pdf->Output();
+}
+
+
+function teambuilder_activities_pdf_separate_terms($node_taxonomy) {
+  if ($node_taxonomy) {
+    //separating terms by vocabularies
+    foreach ($node_taxonomy AS $term) {
+      $links[teambuilder_activities_pdf_get_vocabulary_machinename_by_vid($term->vid)]['taxonomy_term_'. $term->tid] = array(
+        'title' => $term->name,
+        'href' => taxonomy_term_path($term),
+        'attributes' => array(
+          'rel' => 'tag',
+          'title' => strip_tags($term->description)
+        ),
+      );
+    }
+    //theming terms out
+    foreach ($links AS $key => $vid) {
+      $terms[$key] = theme_links($vid);
+    }
+  }
+  return $terms;
+}
+
+function teambuilder_activities_pdf_get_vocabulary_machinename_by_vid($vid) {
+  if(!is_numeric($vid)) {
+    return false;
+  }
+  $result = db_query("SELECT module FROM {vocabulary} WHERE vid = %d", $vid);
+  $name = db_fetch_object($result)->module;
+ 
+  return $name ? $name : false;
+}
+
+/**
+ * Creates a pdf of an exercise node
+ * 
+ * @param $nid Node id
+ *
+ * @return void
+ */
+function exercise_pdf_teacher($node) {
+    global $base_url;
+    require_once libraries_get_path('tcpdf') . '/TCPDF-5.9.074/tcpdf/tcpdf.php';
+
+    $title = "  " . $node->title;
+    $intro = '<b>' . strip_tags($node->field_instruction[0]['value']) . '</b>';
+    $description = $node->body;
+    $debriefing = '<i>' . strip_tags($node->field_debriefing[0]['value']) . '</i>';        
+    $keywords = array();
+    foreach ($node->taxonomy as $taxonomy) {
+        $keywords[] = $taxonomy->name;
+    }
+ 
+    $where = strip_tags($node->field_space[0]['value']);
+    $what = implode($keywords, ", ");
+    $who = strip_tags($node->field_who[0]['value']);
+    $how_many = strip_tags($node->field_groupsize[0]['value']);
+    $materials = strip_tags($node->field_materials[0]['value']);
+    $duration = strip_tags($node->field_time[0]['value']);
+
+    $url = $base_url. '/node/' . $node->nid;
+
+    $pdf = new TCPDF('L','mm','A5');
+
+    $pdf->SetTitle($title);
+    $pdf->SetSubject($title);
+    $pdf->SetAuthor('');
+    $pdf->SetAutoPageBreak(false);
+    $pdf->SetMargins(5, 5, 5);    
+
+    $pdf->AddPage();
+
+    $title_size = 12;
+
+    $pdf->SetFont('Helvetica', 'B', $title_size);
+
+    $title_width = $pdf->GetStringWidth($title);
+    
+    if ($title_width > 150) {
+        $title_size = 15;
+    }
+    
+    $cell_width = 90;
+    $pdf->SetTextColor(255, 255, 255);    
+    $pdf->SetFont('Helvetica', 'B', $title_size);
+    $pdf->Cell($cell_width, 12, $title, null, 2, 'L', true);
+
+    $pdf->setY(20);
+    $pdf->SetTextColor(0, 0, 0);
+    
+    $pdf->SetFillColor(200, 200, 200);
+    $pdf->SetFont('Helvetica', null, 7);
+        
+    $information = 'Hvor? ' . $where . '
+Hvad? ' . $what . '
+Hvem? ' . $who . '
+Hvor mange? ' . $how_many . '
+Materialer? ' . $materials  . '
+Varighed? ' . $duration . '';
+    
+    $pdf->MultiCell($cell_width, 4, $information, 1, 'L', false);
+    
+    if (!empty($node->field_image[0])) {
+        $x = 110;
+        $y = 10;
+        $width = 0;
+        $spacing = 5;
+        $count = 0;
+        $picture_rows = 1;
+        $presetname = 'activity';
+        $preset = imagecache_preset_by_name($presetname);
+        
+        foreach ($node->field_image as $image) {
+            $src = $image["filepath"];
+            $file = imagecache_create_path($presetname, $src);
+            if (file_exists($file) || imagecache_build_derivative($preset['actions'], $src, $file)) {
+                $size = getimagesize($file);
+                if ($size[0] < $size[1]) {
+                    $orientation = 'portrait';
+                    $pic_width = 40;
+                    $new_line = 70;
+                    if ($count > 6) {
+                        break;
+                    }
+                } else {
+                    $orientation = 'landscape';
+                    $pic_width = 80;
+                    $new_line = 50;
+                    if ($count > 4) {
+                        break;
+                    }
+                }
+                $width += $pic_width + $spacing;
+
+                if ($width > 100) {
+                    $y += $new_line;
+                    $x = 110;
+                    $picture_rows++;
+                    $width = 0;
+                }
+
+                $pdf->Image($file,$x,$y,$pic_width,0,'');
+                $x += $pic_width + $spacing;
+            }
+        }
+    }
+
+    $pdf->SetFont('Helvetica', null, 17);
+    $pdf->setTextColor(0, 0, 0);
+
+    $pdf->SetFont('Helvetica', null, 8);
+    
+    $pdf->Ln(2);
+    $pdf->MultiCell($cell_width, 4, $intro, 0, 'L', false, 1, '', '', true, 0, true);
+    $pdf->Ln(2);    
+    $pdf->MultiCell($cell_width, 4, $description, 0, 'L', false, 1, '', '', true, 0, true);
+    $pdf->Ln(2);    
+    $pdf->MultiCell($cell_width, 4, $debriefing, 0, 'L', false, 1, '', '', true, 0, true);
+
+    $pdf->Image(dirname(__FILE__) . '/vejle_logo.png',110,130,30,0,'', 'http://vejle.dk/');
+    $pdf->Image(dirname(__FILE__) . '/vejle_logo.png',70,135,20,0,'', 'http://vejle.dk/');
+    $pdf->Image(dirname(__FILE__) . '/cc-by-sa_340x340.png',84,6,10,0,'');
+
+    $image_url = "http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=" . $url;
+  
+    $ch = curl_init();
+    $timeout = 0;
+    curl_setopt ($ch, CURLOPT_URL, $image_url);
+    curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+
+    // Getting binary data
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_BINARYTRANSFER, 1);
+
+    $image = curl_exec($ch);
+
+    curl_close($ch);
+
+    $f = fopen(dirname(__FILE__) . '/barcodes/'. md5(request_uri()) . '.png', 'w');
+    fwrite($f, $image);
+    fclose($f);
+
+    $pdf->Image(dirname(__FILE__) . '/barcodes/' . md5(request_uri()) . '.png', 170, 110, 40, 0, '');
+
+    $pdf->Output($title . '.pdf', 'I');
 }
 
