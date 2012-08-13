@@ -9,4 +9,4 @@ projects[drupal][version] = 6.26
 projects[teambuilder_vih_dk][type] = "profile"
 projects[teambuilder_vih_dk][download][type] = "git"
 projects[teambuilder_vih_dk][download][url] = "git://github.com/lsolesen/teambuilder.vih.dk.git"
-projects[teambuilder_vih_dk][download][branch] = "master"
+projects[teambuilder_vih_dk][download][branch] = "6.x-1.x"
