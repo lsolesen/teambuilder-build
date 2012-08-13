@@ -15,7 +15,7 @@ before_script:
   - phpenv rehash
   - drush make teambuilder_vih_dk.build ../teambuilder_dev.vih.dk
   - cd ../teambuilder_dev.vih.dk
-  - sudo chmod -R 777 sites/all/modules
+  - sudo chmod -R 777 sites/
   - drush si teambuilder_vih_dk --db-url=mysql://root:@127.0.0.1/drupal --account-name=admin --account-pass=VIH@2012 --site-mail=admin@example.com --site-name="teambuilder.vih.dk" --yes
   - drush cc all --yes
 
