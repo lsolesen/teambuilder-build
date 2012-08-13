@@ -23,7 +23,7 @@ projects[contextual][subdir] = "contrib"
 projects[contextual][version] = 1.0
 
 projects[ctools][subdir] = "contrib"
-projects[ctools][version] = 1.8
+projects[ctools][version] = 1.9
 
 projects[date][subdir] = "contrib"
 projects[date][version] = 2.9
