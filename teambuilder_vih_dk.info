@@ -1,7 +1,8 @@
 name = teambuilder.vih.dk
 description = Install profile for teambuilder.vih.dk
-version = 0.1.0
+version = 6.x-1.0
 core = 6.x
+
 dependencies[] = block
 dependencies[] = color
 dependencies[] = comment
@@ -21,7 +22,7 @@ dependencies[] = field_ui
 dependencies[] = file
 dependencies[] = rdf
 
-;contrib
+; contrib
 dependencies[] = features
 dependencies[] = googleanalytics
 dependencies[] = libraries
