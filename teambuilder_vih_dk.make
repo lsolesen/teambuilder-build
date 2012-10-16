@@ -38,7 +38,7 @@ projects[filefield][subdir] = "contrib"
 projects[filefield][version] = 3.10
 
 projects[flag][subdir] = "contrib"
-projects[flag][version] = 1.3
+projects[flag][version] = 1.4
 
 projects[globalredirect][subdir] = "contrib"
 projects[globalredirect][version] = 1.5
@@ -95,7 +95,7 @@ projects[tagadelic][subdir] = "contrib"
 projects[tagadelic][version] = 1.3
 
 projects[token][subdir] = "contrib"
-projects[token][version] = 1.18
+projects[token][version] = 1.19
 
 projects[transliteration][subdir] = "contrib"
 projects[transliteration][version] = 3.1
