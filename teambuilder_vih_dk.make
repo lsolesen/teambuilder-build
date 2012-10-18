@@ -25,6 +25,9 @@ projects[emfield][version] = 1.0-alpha1
 projects[features][subdir] = "contrib"
 projects[features][version] = 1.0
 
+projects[file_entity][subdir] = "contrib"
+projects[file_entity][version] = 2.0-unstable6
+
 projects[flag][subdir] = "contrib"
 projects[flag][version] = 2.0
 
