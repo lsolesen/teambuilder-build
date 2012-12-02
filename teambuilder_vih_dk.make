@@ -44,7 +44,7 @@ projects[media][subdir] = "contrib"
 projects[media][version] = 2.0-unstable7
 
 projects[media_youtube][subdir] = "contrib"
-projects[media_youtube][version] = 2.0-rc1
+projects[media_youtube][version] = 2.x-dev
 
 projects[menu_block][subdir] = "contrib"
 projects[menu_block][version] = 2.3
