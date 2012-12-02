@@ -23,13 +23,13 @@ projects[contextual][subdir] = "contrib"
 projects[contextual][version] = 1.0
 
 projects[ctools][subdir] = "contrib"
-projects[ctools][version] = 1.9
+projects[ctools][version] = 1.10
 
 projects[date][subdir] = "contrib"
 projects[date][version] = 2.9
 
 projects[emfield][subdir] = "contrib"
-projects[emfield][version] = 2.5
+projects[emfield][version] = 2.6
 
 projects[features][subdir] = "contrib"
 projects[features][version] = 1.2
@@ -44,7 +44,7 @@ projects[globalredirect][subdir] = "contrib"
 projects[globalredirect][version] = 1.5
 
 projects[google_analytics][subdir] = "contrib"
-projects[google_analytics][version] = 3.3
+projects[google_analytics][version] = 3.5
 
 projects[image_resize_filter][subdir] = "contrib"
 projects[image_resize_filter][version] = 1.13
@@ -86,7 +86,7 @@ projects[quiz][subdir] = "contrib"
 projects[quiz][version] = 4.4
 
 projects[similarterms][subdir] = "contrib"
-projects[similarterms][version] = 2.2
+projects[similarterms][version] = 2.3
 
 projects[strongarm][subdir] = "contrib"
 projects[strongarm][version] = 2.2
