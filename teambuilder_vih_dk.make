@@ -26,7 +26,7 @@ projects[features][subdir] = "contrib"
 projects[features][version] = 1.0
 
 projects[file_entity][subdir] = "contrib"
-projects[file_entity][version] = 2.0-unstable7
+projects[file_entity][version] = 2.x-dev
 
 projects[flag][subdir] = "contrib"
 projects[flag][version] = 2.0
@@ -41,7 +41,7 @@ projects[libraries][subdir] = "contrib"
 projects[libraries][version] = 2.0
 
 projects[media][subdir] = "contrib"
-projects[media][version] = 2.0-unstable7
+projects[media][version] = 2.x-dev
 
 projects[media_youtube][subdir] = "contrib"
 projects[media_youtube][version] = 2.x-dev
