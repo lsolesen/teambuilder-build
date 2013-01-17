@@ -15,9 +15,6 @@ projects[teambuilder_activities_pdf][download][branch] = "7.x-1.x"
 
 ; themes
 
-projects[corolla][type] = themes
-projects[corolla][version] = 3.0-rc1
-
 ; libraries
 
 libraries[tcpdf][download][type] = "git"
