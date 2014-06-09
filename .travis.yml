@@ -34,6 +34,3 @@ before_script:
 script:
 
   - test -d profiles/teambuilder_vih_dk
-  - test -d profiles/teambuilder_vih_dk/modules/contrib
-  - test -d profiles/teambuilder_vih_dk/modules/teambuilder
-  - test -d profiles/teambuilder_vih_dk/themes
