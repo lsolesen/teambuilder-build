@@ -1,11 +1,7 @@
 api = 2
 core = 7.x
 
-projects[drupal][type] = core
-projects[drupal][version] = 7.18
-projects[drupal][patch][1586166] = http://drupal.org/files/1586166_1.patch
-
-includes[buildthat] = https://raw.github.com/lsolesen/buildthat/7.x-1.x/buildthat.make
+includes[buildthat] = https://raw.githubusercontent.com/lsolesen/buildthat/7.x-1.x/build-buildthat.make
 
 projects[teambuilder_vih_dk][type] = "profile"
 projects[teambuilder_vih_dk][download][type] = "git"
