@@ -1,14 +1,17 @@
 language: php
 
 php:
-  - 5.3
+
+  - 5.4
 
 mysql:
+
   database: drupal
   username: root
   encoding: utf8
   
 install:
+
   - sudo apt-get update > /dev/null
   - "mysql -e 'create database drupal;'"
   
@@ -28,7 +31,8 @@ before_script:
   - drush si teambuilder_vih_dk --db-url=mysql://root:@127.0.0.1/drupal --account-name=admin --account-pass=VIH@2012 --site-mail=admin@example.com --site-name="teambuilder.vih.dk" --yes
   - drush cc all --yes
 
-script: 
+script:
+
   - test -d profiles/teambuilder_vih_dk
   - test -d profiles/teambuilder_vih_dk/modules/contrib
   - test -d profiles/teambuilder_vih_dk/modules/teambuilder
