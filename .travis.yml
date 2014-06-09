@@ -23,7 +23,7 @@ install:
   - drush make --prepare-install teambuilder_vih_dk.build ../teambuilder_dev.vih.dk
   - cd ../teambuilder_dev.vih.dk
   
-    # Disable sendmail
+  # Disable sendmail
   - echo sendmail_path=`which true` >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   
 before_script:
