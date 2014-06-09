@@ -1,7 +1,6 @@
 name = teambuilder.vih.dk
 description = Install profile for teambuilder.vih.dk
-version = 6.x-1.0
-core = 6.x
+core = 7.x
 
 dependencies[] = block
 dependencies[] = color
