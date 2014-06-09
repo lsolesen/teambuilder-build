@@ -8,14 +8,23 @@ mysql:
   username: root
   encoding: utf8
   
-before_script:
+install:
+  - sudo apt-get update > /dev/null
   - "mysql -e 'create database drupal;'"
-  - pear channel-discover pear.drush.org
-  - pear install drush/drush
+  
+  # Install the latest Drush 6.
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  - composer global require drush/drush:6.*
   - phpenv rehash
-  - drush make teambuilder_vih_dk.build ../teambuilder_dev.vih.dk
+  
+  - drush make --prepare-install teambuilder_vih_dk.build ../teambuilder_dev.vih.dk
   - cd ../teambuilder_dev.vih.dk
-  - sudo chmod -R 777 sites/
+  
+    # Disable sendmail
+  - echo sendmail_path=`which true` >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  
+before_script:
+
   - drush si teambuilder_vih_dk --db-url=mysql://root:@127.0.0.1/drupal --account-name=admin --account-pass=VIH@2012 --site-mail=admin@example.com --site-name="teambuilder.vih.dk" --yes
   - drush cc all --yes
 
