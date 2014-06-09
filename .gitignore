@@ -3,3 +3,4 @@
 .project
 modules/contrib/*
 modules/libraries/*
+modules

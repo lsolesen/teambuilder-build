@@ -5,5 +5,5 @@ includes[buildthat] = https://raw.githubusercontent.com/lsolesen/buildthat/7.x-1
 
 projects[teambuilder_vih_dk][type] = "profile"
 projects[teambuilder_vih_dk][download][type] = "git"
-projects[teambuilder_vih_dk][download][url] = "git://github.com/lsolesen/teambuilder.vih.dk.git"
+projects[teambuilder_vih_dk][download][url] = "https://github.com/lsolesen/teambuilder.vih.dk.git"
 projects[teambuilder_vih_dk][download][branch] = "7.x-1.x"

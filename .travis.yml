@@ -20,7 +20,7 @@ install:
   - composer global require drush/drush:6.*
   - phpenv rehash
   
-  - drush make --prepare-install teambuilder_vih_dk.build ../teambuilder_dev.vih.dk
+  - drush make --prepare-install build-teambuilder.make ../teambuilder_dev.vih.dk
   - cd ../teambuilder_dev.vih.dk
   
   # Disable sendmail

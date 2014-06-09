@@ -12,7 +12,7 @@ Requirements
 Installation
 --
 
-    drush make teambuilder_vih_dk.build ~/workspace/teambuilder_vih_dk_build
+    drush make build-teambuilder.make ~/workspace/teambuilder_vih_dk_build
     
 Create the settings.php in sites/default and chmod 755
 Create "files" directory in sites/default and chmod 755
@@ -24,7 +24,7 @@ Navigate to the root directory in a web browser and run the install profile.
 If you want to update just the install profile instead of rebuilding the
 entire site, you can run this:
 
-    drush make --no-core --contrib-destination=. teambuilder_vih_dk.make
+    drush make --no-core --contrib-destination=. drupal-org.make
 
 ### Rebuild everything ###
 
