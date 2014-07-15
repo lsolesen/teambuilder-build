@@ -1,7 +1,7 @@
 [teambuilder.vih.dk](http://teambuilder.vih.dk) [![Build Status](https://secure.travis-ci.org/lsolesen/teambuilder-build.png?branch=7.x-1.x)](http://travis-ci.org/lsolesen/teambuilder-build)
 ==
 
-Installation profile for teambuilder.vih.dk written for Drupal 6.
+Make files for teambuilder.vih.dk written for Drupal.
 
 Requirements
 --
