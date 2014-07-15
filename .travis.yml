@@ -33,4 +33,4 @@ before_script:
 
 script:
 
-  - test -d profiles/teambuilder_vih_dk
+  - test -d sites/all/modules/contrib
