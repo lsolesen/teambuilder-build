@@ -9,23 +9,23 @@ mysql:
   database: drupal
   username: root
   encoding: utf8
-  
+
 install:
 
   - sudo apt-get update > /dev/null
   - "mysql -e 'create database drupal;'"
-  
+
   # Install the latest Drush 6.
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - composer global require drush/drush:6.*
   - phpenv rehash
-  
+
   - drush make --prepare-install build-teambuilder.make ../teambuilder_dev.vih.dk
   - cd ../teambuilder_dev.vih.dk
-  
+
   # Disable sendmail
   - echo sendmail_path=`which true` >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  
+
 before_script:
 
   - drush si minimal --db-url=mysql://root:@127.0.0.1/drupal --account-name=admin --account-pass=VIH@2012 --site-mail=admin@example.com --site-name="teambuilder.vih.dk" --yes
@@ -35,3 +35,4 @@ before_script:
 script:
 
   - test -d sites/all/modules/contrib
+  - profiles/teambuilder-build/scripts/check-overridden.sh
