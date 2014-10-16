@@ -3,7 +3,7 @@
 : ${DRUSH:=drush}
 : ${DRUSH_ARGS:=}
 
-TEAMBUILDER_FEATURES="teambuilder_activities" 
+TEAMBUILDER_FEATURES="teambuilder_activities teambuilder_search"
 
 # TODO: We should make sure that 'diff' is downloaded first!
 $DRUSH $DRUSH_ARGS en -y diff
