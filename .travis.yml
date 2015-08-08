@@ -1,8 +1,11 @@
 language: php
+sudo: false
 
 php:
 
   - 5.4
+  - 5.5
+  - 5.6
 
 mysql:
 
@@ -12,13 +15,12 @@ mysql:
 
 install:
 
-  - sudo apt-get update > /dev/null
   - "mysql -e 'create database drupal;'"
 
-  # Install the latest Drush 6.
+  # Install latest Drush 6.
+  - travis_retry composer self-update && composer --version
+  - travis_retry composer global require "drush/drush:6.*"
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - composer global require drush/drush:6.*
-  - phpenv rehash
 
   - drush make --prepare-install build-teambuilder.make ../teambuilder_dev.vih.dk
   - cd ../teambuilder_dev.vih.dk
