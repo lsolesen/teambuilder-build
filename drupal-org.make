@@ -7,7 +7,7 @@ projects[teambuilder_activities][type] = "module"
 projects[teambuilder_activities][download][type] = "git"
 projects[teambuilder_activities][download][url] = "https://github.com/lsolesen/teambuilder_activities.git"
 projects[teambuilder_activities][download][branch] = "7.x-1.x"
-projects[teambuilder_activities][download][revision] = "14aa0e2"
+projects[teambuilder_activities][download][revision] = "7b24660884eccc8d441342ba737ecc014aa83ae2"
 
 projects[teambuilder_activities_pdf][type] = "module"
 projects[teambuilder_activities_pdf][download][type] = "git"
