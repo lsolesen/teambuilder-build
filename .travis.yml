@@ -3,7 +3,7 @@ sudo: false
 
 php:
 
-  - 5.5
+  - 5.6
 
 mysql:
 
@@ -14,7 +14,7 @@ mysql:
 matrix:
   fast_finish: true
   include:
-    - php: 5.6
+    - php: 5.7
 
 # Cache Composer & Drush directories.
 cache:
