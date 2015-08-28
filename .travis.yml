@@ -13,8 +13,6 @@ mysql:
 
 matrix:
   fast_finish: true
-  include:
-    - php: 5.7
 
 # Cache Composer & Drush directories.
 cache:
