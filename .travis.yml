@@ -44,4 +44,4 @@ before_script:
 script:
 
   - test -d sites/all/modules/contrib
-  - profiles/teambuilder_vih_dk/scripts/check-overridden.sh
+  - ../scripts/check-overridden.sh
