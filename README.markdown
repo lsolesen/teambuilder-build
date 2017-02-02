@@ -7,7 +7,6 @@ Requirements
 --
 
 * [drush](http://drupal.org/project/drush) 
-* [drush_make](http://drupal.org/project/drush_make)
 
 Installation
 --

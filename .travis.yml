@@ -29,7 +29,7 @@ install:
   - travis_retry composer global require "drush/drush:6.*"
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
 
-  - drush make --prepare-install build-teambuilder.make ../teambuilder_dev.vih.dk
+  - drush make --prepare-install build-teambuilder-dev.make ../teambuilder_dev.vih.dk
   - cd ../teambuilder_dev.vih.dk
 
   # Disable sendmail
@@ -44,4 +44,4 @@ before_script:
 script:
 
   - test -d sites/all/modules/contrib
-  - profiles/teambuilder_vih_dk/scripts/check-overridden.sh
+  - ../teambuilder-build/scripts/check-overridden.sh
