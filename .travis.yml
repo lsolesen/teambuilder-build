@@ -44,4 +44,4 @@ before_script:
 script:
 
   - test -d sites/all/modules/contrib
-  - ../scripts/check-overridden.sh
+  - ../teambuilder-build/scripts/check-overridden.sh
